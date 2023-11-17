@@ -20,33 +20,41 @@ void init_in(char text[]) {
 }
 
 void init_out() {
-	// Implementierung der Initialisierung des Ausgabepuffers
+	// Setze die Positionen und Füllstände des Ausgabepuffers zurück
+	out_pos = 0;
+	out_fill = 0;
 }
 
 void get_out_buffer(char text[]) {
-	// Implementierung, um den Ausgabepuffer zu kopieren
+	// Kopiere den Inhalt des Ausgabepuffers in den übergebenen Text
+	for(int i = 0; i < out_fill; i++)
+	{
+		text[i] = out_buffer[i];
+	}
+	text[out_fill] = '\0';
 }
 
 bool has_next_char(void) {
-	// Implementierung, um zu prüfen, ob weitere Zeichen im Eingabepuffer vorhanden sind
+	return in_pos < in_fill;
 }
 
 unsigned char read_char(void) {
-	// Implementierung, um ein Zeichen aus dem Eingabepuffer zu lesen
+	return in_buffer[in_pos++];
 }
 
 void write_char(unsigned char c) {
-	// Implementierung, um ein Zeichen in den Ausgabepuffer zu schreiben
+	out_buffer[out_pos++] = c;
+	out_fill++;
 }
 
 bool has_next_bit(void) {
-	// Implementierung, um zu prüfen, ob weitere Bits im Eingabepuffer vorhanden sind
+	return true;
 }
 
 BIT read_bit(void) {
-	// Implementierung, um ein Bit aus dem Eingabepuffer zu lesen
+	return ZERO;
 }
 
 void write_bit(BIT c) {
-	// Implementierung, um ein Bit in den Ausgabepuffer zu schreiben
+
 }

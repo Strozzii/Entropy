@@ -7,7 +7,6 @@
 
 int main() {
 
-	init_in("abcde");
 
 	return 0;
 }
