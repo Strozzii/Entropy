@@ -1,0 +1,14 @@
+# ninja log v5
+2	36	7219150423401766	CMakeFiles/Entropy.dir/huffman_common.c.obj	d38f835609d0bbec
+7	43	7219150423471833	CMakeFiles/Entropy.dir/huffman.c.obj	72c1dda018e5b8f1
+0	44	7219150423481823	CMakeFiles/Entropy.dir/main.c.obj	22348051bbb71f35
+5	48	7219150423521975	CMakeFiles/Entropy.dir/io.c.obj	da45c8ebe889f9fb
+48	106	7219150424077570	Entropy.exe	844d03781ff192e0
+1	39	7219153704433025	CMakeFiles/Entropy.dir/main.c.obj	22348051bbb71f35
+39	83	7219153704858504	Entropy.exe	844d03781ff192e0
+1	38	7219153835735296	CMakeFiles/Entropy.dir/main.c.obj	22348051bbb71f35
+39	85	7219153836185895	Entropy.exe	844d03781ff192e0
+3	27	7219156921357814	CMakeFiles/Entropy.dir/huffman_common.c.obj	d38f835609d0bbec
+5	37	7219156921457992	CMakeFiles/Entropy.dir/huffman.c.obj	72c1dda018e5b8f1
+1	39	7219156921478072	CMakeFiles/Entropy.dir/main.c.obj	22348051bbb71f35
+39	82	7219156921889444	Entropy.exe	844d03781ff192e0
