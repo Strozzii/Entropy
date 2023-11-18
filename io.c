@@ -1,42 +1,104 @@
-// io.c
+/* ===========================================================================
+ * Header-Dateien einbinden
+ * ======================================================================== */
+
+#include <stdbool.h>
+#include <string.h>
 
 #include "io.h"
-#include <stdio.h>
 
-unsigned char in_buffer[BUF_SIZE];
-unsigned char out_buffer[BUF_SIZE];
-int in_pos, out_pos, in_fill, out_fill;
 
-void init_in(char text[])
+/* ===========================================================================
+ * Symbolische Konstanten
+ * ======================================================================== */
+
+/**
+ * Größe des Eingabe-/Ausgabepuffers.
+ */
+#define BUF_SIZE 4096
+
+
+/* ===========================================================================
+ * Globale Variablen
+ * ======================================================================== */
+
+/**
+ * Eingabepuffer
+ */
+static unsigned char in_buffer[BUF_SIZE];
+
+/**
+ * Ausgabepuffer
+ */
+static unsigned char out_buffer[BUF_SIZE];
+
+/**
+ * Zeiger Position im Eingabepuffer
+ */
+static int in_pos;
+
+/**
+ * Zeiger Position im Ausgabepuffer
+ */
+static int out_pos;
+
+/**
+ * Füllstand des Eingabepuffers
+ */
+static int in_fill;
+
+/**
+ * Füllstand des Ausgabepuffers
+ */
+static int out_fill;
+
+
+/* ===========================================================================
+ * Funktionsdefinitionen (extern)
+ * ======================================================================== */
+
+/* ---------------------------------------------------------------------------
+ * Funktion: init_in
+ * ------------------------------------------------------------------------ */
+extern void init_in(char text[])
 {
-	// Kopiere den Text in den Eingabepuffer (in_buffer)
-	int text_length = strlen(text);
+	int text_length;
 	int i;
-	for (i = 0; i < text_length; ++i)
+
+	/* Vorsicht! Hier implizite Typ-Konvertierung (Unsigned Long Long -> Int) */
+	text_length = strlen(text);
+
+	/* Zeichenweises Schreiben der Zeichen aus text in den Eingabepuffer */
+	for (i = 0; i < text_length; i++)
 	{
 		in_buffer[i] = text[i];
 	}
 	in_buffer[i] = '\0';
 
-	// Setze die Positionen und Füllstände entsprechend zurück
+	/* Setzt Position zurück und den Füllstand auf die Länge des Textes */
 	in_pos = 0;
 	in_fill = text_length;
 
 }
 
-void init_out()
+/* ---------------------------------------------------------------------------
+ * Funktion: init_out
+ * ------------------------------------------------------------------------ */
+extern void init_out()
 {
-
+	/* 'Leert' den Ausgabepuffer, um keine Reste von vorigen Operationen zu behalten */
 	memset(out_buffer, 0, out_fill);
 
-	// Setze die Positionen und Füllstände des Ausgabepuffers zurück
+	/* Setzt die Position und den Füllstand des Ausgabepuffers zurück */
 	out_pos = 0;
 	out_fill = 0;
 }
 
-void get_out_buffer(char text[])
+/* ---------------------------------------------------------------------------
+ * Funktion: get_out_buffer
+ * ------------------------------------------------------------------------ */
+extern void get_out_buffer(char text[])
 {
-	// Kopiere den Inhalt des Ausgabepuffers in den übergebenen Text
 	for (int i = 0; i < out_fill; i++)
 	{
 		text[i] = out_buffer[i];
@@ -44,36 +106,62 @@ void get_out_buffer(char text[])
 	text[out_fill] = '\0';
 }
 
-bool has_next_char(void)
+/* ---------------------------------------------------------------------------
+ * Funktion: has_next_char
+ * ------------------------------------------------------------------------ */
+extern bool has_next_char(void)
 {
 	return in_pos < in_fill;
 }
 
-unsigned char read_char(void)
+/* ---------------------------------------------------------------------------
+ * Funktion: read_char
+ * ------------------------------------------------------------------------ */
+extern unsigned char read_char(void)
 {
+	/* Nach jedem Lesen wird der Zeiger verschoben */
 	return in_buffer[in_pos++];
 }
 
-void write_char(unsigned char c)
+/* ---------------------------------------------------------------------------
+ * Funktion: write_char
+ * ------------------------------------------------------------------------ */
+extern void write_char(unsigned char c)
 {
+	/* Nach jedem Schreiben wird der Zeiger verschoben und der Füllstand erhöht */
 	out_buffer[out_pos++] = c;
 	out_fill++;
 }
 
-bool has_next_bit(void)
+/* ---------------------------------------------------------------------------
+ * Funktion: has_next_bit
+ * ------------------------------------------------------------------------ */
+extern bool has_next_bit(void)
 {
+	/* Der Füllstand beschreibt nur ganze Byte und muss in Bit umgerechnet werden */
 	return (in_pos < in_fill * 8);
 }
 
-BIT read_bit(void)
+/* ---------------------------------------------------------------------------
+ * Funktion: read_bit
+ * ------------------------------------------------------------------------ */
+extern BIT read_bit(void)
 {
-	BIT b = GET_BIT(in_buffer[in_pos / 8], in_pos % 8);
+	short int b;
+
+	/* Inkrementieren innerhalb des Makro-Aufrufs hat Anomalien verursacht */
+	b = GET_BIT(in_buffer[in_pos / 8], in_pos % 8);
 	in_pos++;
-	return b;
+
+	return b > 0 ? ONE : ZERO;
 }
 
-void write_bit(BIT c)
+/* ---------------------------------------------------------------------------
+ * Funktion: write_bit
+ * ------------------------------------------------------------------------ */
+extern void write_bit(BIT c)
 {
+	/* Inkrementieren innerhalb des Makro-Aufrufs hat Anomalien verursacht */
 	PUT_BIT(out_buffer[out_pos / 8], c, out_pos % 8);
 	out_pos++;
 	out_fill++;
