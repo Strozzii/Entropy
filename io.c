@@ -11,10 +11,12 @@ void init_in(char text[])
 {
 	// Kopiere den Text in den Eingabepuffer (in_buffer)
 	int text_length = strlen(text);
-	for (int i = 0; i < text_length; ++i)
+	int i;
+	for (i = 0; i < text_length; ++i)
 	{
 		in_buffer[i] = text[i];
 	}
+	in_buffer[i] = '\0';
 
 	// Setze die Positionen und Füllstände entsprechend zurück
 	in_pos = 0;

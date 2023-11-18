@@ -23,6 +23,7 @@ void test_rd_chars_wr_bits(char in[], char out[])
 		}
 
 	}
+	write_char('\0');
 
 	get_out_buffer(out);
 }
