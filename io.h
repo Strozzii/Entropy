@@ -9,8 +9,8 @@
 
 #define BUF_SIZE 4096
 
-#define GET_BIT(BYTE, POS) (((BYTE) >> (POS)) & 1)
-#define PUT_BIT(BYTE, BIT, POS) ((BYTE) = ((BYTE) & ~(1 << (POS))) | ((BIT) << (POS)))
+#define GET_BIT(BYTE, POS) (((BYTE) & (1 << (7 - POS))))
+#define PUT_BIT(BYTE, BIT, POS) ((BYTE) = ((BYTE) & ~(1 << (7 - POS))) | ((BIT) << (7 - POS)))
 
 void init_in(char text[]);
 void init_out();

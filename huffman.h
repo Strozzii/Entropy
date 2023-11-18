@@ -4,7 +4,7 @@
 #define HUFFMAN_H
 
 #include "io.h"
-
+#include <stdio.h>
 void test_rd_chars_wr_bits(char in[], char out[]);
 void test_rd_bits_wr_chars(char in[], char out[]);
 
