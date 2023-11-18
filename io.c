@@ -56,12 +56,14 @@ void write_char(unsigned char c)
 
 bool has_next_bit(void)
 {
-	return (in_pos < in_fill) || (in_pos == in_fill && in_pos < 8);
+	return (in_pos < in_fill * 8);
 }
 
 BIT read_bit(void)
 {
-	return GET_BIT(in_buffer[in_pos / 8], in_pos % 8);
+	BIT b = GET_BIT(in_buffer[in_pos / 8], in_pos % 8);
+	in_pos++;
+	return b;
 }
 
 void write_bit(BIT c)

@@ -12,9 +12,6 @@ int main() {
 
 	test_rd_chars_wr_bits(in, out);
 
-	printf("Input: %s\n", in);
-	printf("Output: %s\n", out);
-
 	printf("%d\n", strcmp(out, "UUUUUU"));
 
 	char in_2[] = "UUUUUU";

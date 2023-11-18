@@ -38,14 +38,16 @@ void test_rd_bits_wr_chars(char in[], char out[])
 	{
 		b = read_bit();
 
-		if (b == ZERO)
-		{
-			write_char('0');
-		}
-		else if (b == ONE)
+		if (b > 0)
 		{
 			write_char('1');
 		}
+		else
+		{
+			write_char('0');
+		}
+
+
 	}
 
 	get_out_buffer(out);
