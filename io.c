@@ -21,10 +21,14 @@ void init_in(char text[])
 	// Setze die Positionen und Füllstände entsprechend zurück
 	in_pos = 0;
 	in_fill = text_length;
+
 }
 
 void init_out()
 {
+
+	memset(out_buffer, 0, out_fill);
+
 	// Setze die Positionen und Füllstände des Ausgabepuffers zurück
 	out_pos = 0;
 	out_fill = 0;
