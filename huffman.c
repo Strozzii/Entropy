@@ -4,7 +4,6 @@
 
 #include "io.h"
 #include "huffman.h"
-#include "huffman_common.h"
 
 
 /* ===========================================================================
