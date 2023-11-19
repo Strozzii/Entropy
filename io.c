@@ -83,16 +83,19 @@ extern void init_in(char text[])
 	/* Vorsicht! Hier implizite Typ-Konvertierung (Unsigned Long Long -> Int) */
 	text_length = strlen(text);
 
+	/* Setzt Position zurück und den Füllstand auf die Länge des Textes */
+	in_pos = 0;
+	in_fill = text_length;
+
+	/* 'Leert' den Eingabepuffer, um keine Reste von vorigen Operationen zu behalten */
+	memset(in_buffer, 0, in_fill);
+
 	/* Zeichenweises Schreiben der Zeichen aus text in den Eingabepuffer */
 	for (i = 0; i < text_length; i++)
 	{
 		in_buffer[i] = text[i];
 	}
 	in_buffer[i] = '\0';
-
-	/* Setzt Position zurück und den Füllstand auf die Länge des Textes */
-	in_pos = 0;
-	in_fill = text_length;
 
 }
 
