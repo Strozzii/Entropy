@@ -88,7 +88,7 @@ extern void init_in(char text[])
 	in_fill = text_length;
 
 	/* 'Leert' den Eingabepuffer, um keine Reste von vorigen Operationen zu behalten */
-	memset(in_buffer, 0, in_fill);
+	memset(in_buffer, 0, BUF_SIZE);
 
 	/* Zeichenweises Schreiben der Zeichen aus text in den Eingabepuffer */
 	for (i = 0; i < text_length; i++)
@@ -105,7 +105,7 @@ extern void init_in(char text[])
 extern void init_out()
 {
 	/* 'Leert' den Ausgabepuffer, um keine Reste von vorigen Operationen zu behalten */
-	memset(out_buffer, 0, out_fill);
+	memset(out_buffer, 0, BUF_SIZE);
 
 	/* Setzt die Position und den Füllstand des Ausgabepuffers zurück */
 	out_pos = 0;
