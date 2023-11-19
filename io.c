@@ -19,6 +19,21 @@
 
 
 /* ===========================================================================
+ * Makros zur Bit-Manipulation
+ * ======================================================================== */
+
+/**
+ * Privates Makro, um den Zustand eines Bits innerhalb eines Bytes an der übergebenen Position zu erhalten.
+ */
+#define GET_BIT(BYTE, POS) (((BYTE) & (1 << (7 - POS))))
+
+/**
+ * Privates Makro, um an einer beliebigen Stelle eines Bytes einen Bit zu setzen.
+ */
+#define PUT_BIT(BYTE, BIT, POS) ((BYTE) = ((BYTE) & ~(1 << (7 - POS))) | ((BIT) << (7 - POS)))
+
+
+/* ===========================================================================
  * Globale Variablen
  * ======================================================================== */
 
