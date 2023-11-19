@@ -23,7 +23,7 @@ in Header-Dateien deklariert werden.
 
 
 * **Modul: main**
-  * Dieses Modul ruft Test-Funktionen auf, um das Ergebnis auf Richtigkeit zu überprüfen
+  * Dieses Modul ruft Test-Funktionen auf, um das Ergebnis auf Richtigkeit zu überprüfen.
 
 ***
 
