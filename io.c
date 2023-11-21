@@ -165,7 +165,7 @@ extern bool has_next_bit(void)
  * ------------------------------------------------------------------------ */
 extern BIT read_bit(void)
 {
-	short int b;
+	char b;
 
 	/* Inkrementieren innerhalb des Makro-Aufrufs hat Anomalien verursacht */
 	b = GET_BIT(in_buffer[in_pos / 8], in_pos % 8);
