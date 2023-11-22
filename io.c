@@ -2,7 +2,6 @@
  * Header-Dateien einbinden
  * ======================================================================== */
 
-#include <stdbool.h>
 #include <string.h>
 
 #include "io.h"
