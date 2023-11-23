@@ -3,6 +3,7 @@
  * ======================================================================== */
 
 #include <string.h>
+#include <stdio.h>
 
 #include "io.h"
 
@@ -86,15 +87,11 @@ extern void init_in(char text[])
 	in_pos = 0;
 	in_fill = text_length;
 
-	/* 'Leert' den Eingabepuffer, um keine Reste von vorigen Operationen zu behalten */
-	memset(in_buffer, 0, BUF_SIZE);
-
 	/* Zeichenweises Schreiben der Zeichen aus text in den Eingabepuffer */
 	for (i = 0; i < text_length; i++)
 	{
 		in_buffer[i] = text[i];
 	}
-	in_buffer[i] = '\0';
 
 }
 
@@ -103,9 +100,6 @@ extern void init_in(char text[])
  * ------------------------------------------------------------------------ */
 extern void init_out()
 {
-	/* 'Leert' den Ausgabepuffer, um keine Reste von vorigen Operationen zu behalten */
-	memset(out_buffer, 0, BUF_SIZE);
-
 	/* Setzt die Position und den Füllstand des Ausgabepuffers zurück */
 	out_pos = 0;
 	out_fill = 0;
@@ -181,5 +175,5 @@ extern void write_bit(BIT c)
 	/* Inkrementieren innerhalb des Makro-Aufrufs hat Anomalien verursacht */
 	PUT_BIT(out_buffer[out_pos / 8], c, out_pos % 8);
 	out_pos++;
-	out_fill++;
+	out_fill = (out_pos / 8) + (out_pos % 8 == 0 ? 0 : 1);
 }
